@@ -20,7 +20,7 @@ services:
       - "443:443"
       - "3306:3306"
     volumes:
-      - ./misp/misp-db:/var/lib/mysql
+      - ./misp-db:/var/lib/mysql
     networks:
       - SOAR
 networks:
