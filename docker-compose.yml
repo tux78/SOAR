@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+
+  intelmq:
+    image: intelmq:PROD
+### Map external volume for data persistance
+    volumes:
+       # OPTIONAL: when developing intelMQ, map local GIT repo
+       # see the following link for details:
+       # https://intelmq.readthedocs.io/en/latest/Developers-Guide/
+       - "./dev_intelmq/:/opt/dev_intelmq"
+    ports:
+      - "8443:443"
+    networks:
+      - SOAR
+
+  misp:
+    image: harvarditsecurity/misp:latest
+    ports:
+      - "443:443"
+      - "3306:3306"
+    volumes:
+      - ./misp/misp-db:/var/lib/mysql
+    networks:
+      - SOAR
+networks:
+  SOAR:
