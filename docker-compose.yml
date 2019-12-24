@@ -15,12 +15,13 @@ services:
       - SOAR
 
   misp:
-    image: harvarditsecurity/misp:latest
+#    image: harvarditsecurity/misp
+    image: misp:PROD
     ports:
       - "443:443"
       - "3306:3306"
     volumes:
-      - ./misp-db:/var/lib/mysql
+      - "./misp-db:/var/lib/mysql"
     networks:
       - SOAR
 networks:
