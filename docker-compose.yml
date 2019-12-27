@@ -9,6 +9,7 @@ services:
        # see the following link for details:
        # https://intelmq.readthedocs.io/en/latest/Developers-Guide/
        - "./dev_intelmq/:/opt/dev_intelmq"
+       - "./transfer/:/tmp/"
     ports:
       - "8443:443"
     networks:
@@ -21,7 +22,7 @@ services:
       - "443:443"
       - "3306:3306"
     volumes:
-      - "./misp-db:/var/lib/mysql"
+      - "./misp/misp-db:/var/lib/mysql"
     networks:
       - SOAR
 networks:
