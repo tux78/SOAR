@@ -108,6 +108,12 @@ then
         provisionconfig /etc/intelmq/openDXL $EPO_IP $HOST_IP -t $EPO_PORT -u $EPO_ADMIN -p $EPO_PW\
     "
   fi
+
+  # Incorporate DEV environment
+  execute_command "Incorporate intelMQ DEV environment" "\
+    docker-compose exec intelmq /update_dev.sh \
+  "
+
 fi
 
 #########################

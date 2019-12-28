@@ -25,6 +25,7 @@ RUN echo "Finalizing intelMQ setup..." \
 
 # Copy content
 COPY ./intelmq/etc/ /etc/
+COPY ./intelmq/update_dev.sh /
 
 # Setup intelMQ Manager
 COPY ./intelmq/var/ /var/
@@ -44,6 +45,7 @@ RUN echo "Setting permissions..." \
   && chown intelmq:intelmq /etc/intelmq/openDXL -R \
   && chown www-data:www-data /opt/intelmq/etc -R \
   && chown www-data:www-data /etc/ssl -R \
+  && chmod 755 /update_dev.sh \
   && echo "Finished."
 
 # Default command to be executed when starting image
