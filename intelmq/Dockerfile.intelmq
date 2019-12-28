@@ -35,7 +35,6 @@ RUN echo "Finalizing intelMQ Manager setup..." \
   && mkdir /opt/intelmq/etc/manager \
   && touch /opt/intelmq/etc/manager/positions.conf \
   && chown www-data:www-data /opt/intelmq/etc/manager/positions.conf \
-  && chown www-data:www-data -R /etc/ssl \
   && echo "Finished."
 
 
@@ -45,7 +44,6 @@ RUN echo "Setting permissions..." \
   && chown intelmq:intelmq /etc/intelmq/openDXL -R \
   && chown www-data:www-data /opt/intelmq/etc -R \
   && chown www-data:www-data /etc/ssl -R \
-  && ls -l /etc/ssl \
   && echo "Finished."
 
 # Default command to be executed when starting image
