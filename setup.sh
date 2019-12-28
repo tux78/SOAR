@@ -13,7 +13,6 @@ execute_command()
   printf '%s %s\n' "$(date)" "Running command \'$2\'" >>install.log 
   echo "Start command output" >>install.log
   eval $2 &>>install.log
-  echo "End command output" >>install.log
 
   if [ $? -ne 0 ]
   then
