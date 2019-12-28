@@ -29,9 +29,13 @@ COPY ./intelmq/etc/ /etc/
 # Setup intelMQ Manager
 COPY ./intelmq/var/ /var/
 RUN echo "Finalizing intelMQ Manager setup..." \
+  && openssl req -x509 -nodes -days 3650 -newkey rsa:4096 \
+       -keyout /etc/ssl/intelmq.key \
+       -out /etc/ssl/intelmq.crt -batch \
   && mkdir /opt/intelmq/etc/manager \
   && touch /opt/intelmq/etc/manager/positions.conf \
   && chown www-data:www-data /opt/intelmq/etc/manager/positions.conf \
+  && chown www-data:www-data -R /etc/ssl \
   && echo "Finished."
 
 
@@ -40,6 +44,8 @@ RUN echo "Setting permissions..." \
   && echo "www-data ALL=(intelmq) NOPASSWD: /usr/local/bin/intelmqctl" >> /etc/sudoers \
   && chown intelmq:intelmq /etc/intelmq/openDXL -R \
   && chown www-data:www-data /opt/intelmq/etc -R \
+  && chown www-data:www-data /etc/ssl -R \
+  && ls -l /etc/ssl \
   && echo "Finished."
 
 # Default command to be executed when starting image

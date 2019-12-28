@@ -1,3 +1,4 @@
 /dev_*
 /misp/misp-db*
 /transfer
+*.log
