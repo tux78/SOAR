@@ -170,6 +170,8 @@ function load_bots(config) {
     if (getUrlParameter("configuration") !== "new") {
         load_configuration();
     } else {
+        load_file(DEFAULTS_FILE, (config) => {
+        app.defaults = read_defaults_conf(config)})
         draw();
         resize();
         $saveButton.blinking();
