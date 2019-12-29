@@ -38,7 +38,7 @@ Bots are located in the corresponding directories:
 - experts
 - outputs
 
-Keep in mind that additional (new) bots have to be added to the following file as well;
+Keep in mind that additional (new) bots have to be added to the following file as well:
 ```
 # vi ./dev_intelmq/intelmq/bots/BOTS
 ```
