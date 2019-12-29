@@ -1,6 +1,23 @@
 # Security Orchestration, Automation and Response 
 This repository provides a docker-based installation of MISP and intelMQ. Using this, a fully operational installation can be set up within just a few steps
 
+## Why SOAR?
+SOAR is actually mostly process based, and includes the definition, setup, deployment, management and monitoring of managed networks. This is mostly process based, and can typically be automated to a certain extend. MISP and intelMQ provide a very powerful extension to support SOAR processes, especially as manual tasks can be fully automated as long as the connected systems provide a scriptable interface (webUI, DB, API etc).
+
+## Use Cases or Playbooks
+### Collecting threat intelligence feeds
+MISP supports the process of collecting (and consolidating) threat intelligence feeds, which may be ingested from a number of sources. This can be single fields (such as CnC server IP addresses, domains, hashes of malicious files), but can also comprise sophistocated information around campaigns (including all previous information in a single record).
+By applying Tags this information can be preprared for later processing by subsequent enforcement points, such as firewalls or proxies. INtelMQ collects this information from MISP, and applies it to those appliances.
+
+### Boarding SIEM-relevant devices
+Provisioning new devices, such as Windows Domain Controllers, is typically documented within a CMDB, including the provisioning process itself. Since those devices may be relevant to a deployed SIEM system as well, they have to be properly boarded.
+IntelMQ supports this by connecting to the CMDB, processing the relevant information, and automatically boarding newly provisioned devices into the SIEM installation.
+
+### EDR tasks
+An EDR task may include searching for suspicious files within the deployed environment, and take appropriate action in case of a finding.
+IntelMQ can collect hash information from MISP, execute a McAfee Active Response Query, and take action based on any finding such as blocking suspicious IP address on a firewall/proxy, or add them to SIEM watch lists
+
+# Installation
 ## Create working directory
 As a first step it is recommended to create a working directory
 ```
@@ -45,6 +62,7 @@ Please replace the following variables with the respective values:
 - EPO_PORT: webUI port McAfee ePO server is listening on (Default: 8443)
 - EPO_ADMIN/EPO_PW: credentials of admin user entitled to sign certificates
 
+# Operations
 ## intelMQ Development
 Development of additinal intelMQ Bots takes place in the following directory on the docker host itself:
 ```
