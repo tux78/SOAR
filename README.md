@@ -63,6 +63,29 @@ Please replace the following variables with the respective values:
 - EPO_ADMIN/EPO_PW: credentials of admin user entitled to sign certificates
 
 # Operations
+
+## intelMQ
+The intelMQ webUI is accessible here:
+https://[docker IP]:8443/
+
+The default credentials are as follows:
+username: intelmqadmin
+password: intelmqadmin
+
+## MISP
+The MIPS webUI is accessible here:
+https://[docker IP]/
+
+The default credentials are as follows:
+username: admin@admin.test
+password: admin
+
+You are required to change the password after first login. Please note that the new password has to satisfy various requirements:
+- min 12 characters
+- min 1 lowercase
+- min 1 uppercase
+- min 1 special character
+
 ## intelMQ Development
 Development of additinal intelMQ Bots takes place in the following directory on the docker host itself:
 ```
