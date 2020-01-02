@@ -66,19 +66,27 @@ Please replace the following variables with the respective values:
 
 ## intelMQ
 The intelMQ webUI is accessible here:
+
 https://[docker IP]:8443/
 
 The default credentials are as follows:
-username: intelmqadmin
-password: intelmqadmin
+- username: intelmqadmin
+- password: intelmqadmin
+
+The password can be changed by editing the following file:
+
+```
+# vi /etc/intelmq/intelmq-manager.htusers
+```
 
 ## MISP
 The MIPS webUI is accessible here:
+
 https://[docker IP]/
 
 The default credentials are as follows:
-username: admin@admin.test
-password: admin
+- username: admin@admin.test
+- password: admin
 
 You are required to change the password after first login. Please note that the new password has to satisfy various requirements:
 - min 12 characters
