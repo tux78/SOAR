@@ -34,7 +34,7 @@ Cloning the repository is done by running the following command
 ## Execute setup routine
 The actual setup is initiated by executing the setup routine
 ```
-# ./setup
+# ./setup.sh
 ```
 
 The following setup will ask some questions:
