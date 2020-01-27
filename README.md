@@ -18,12 +18,8 @@ An EDR task may include searching for suspicious files within the deployed envir
 IntelMQ can collect hash information from MISP, execute a McAfee Active Response Query, and take action based on any finding such as blocking suspicious IP address on a firewall/proxy, or add them to SIEM watch lists
 
 # Installation
-## Create working directory
-As a first step it is recommended to create a working directory
-```
-# mkdir SOAR
-# cd SOAR
-```
+
+The following routine will create a new folder called SOAR which will hold all required files. 
 
 ## Clone repository
 Cloning the repository is done by running the following command
@@ -34,7 +30,8 @@ Cloning the repository is done by running the following command
 ## Execute setup routine
 The actual setup is initiated by executing the setup routine
 ```
-# ./setup.sh
+# cd SOAR
+# sudo ./setup.sh
 ```
 
 The following setup will ask some questions:
