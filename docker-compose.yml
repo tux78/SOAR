@@ -12,6 +12,7 @@ services:
        - "./transfer/:/tmp/"
     ports:
       - "8443:443"
+      - "1514:1514"
     networks:
       - SOAR
 
