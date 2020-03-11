@@ -102,10 +102,14 @@ then
   # Integrate intelMQ with ePO
   if [ "${EPO_CONFIG,,}" == "y" ]
   then
-    execute_command "Integrate intelMQ with ePO" "\
+    execute_command "Integrate intelMQ with ePO: provision DXL certificate" "\
       docker-compose exec intelmq\
         /usr/local/bin/dxlclient\
         provisionconfig /etc/intelmq/openDXL $EPO_IP $HOST_IP -t $EPO_PORT -u $EPO_ADMIN -p $EPO_PW\
+    "
+    execute_command "Integrate intelMQ with ePO: change file permissions" "\
+      docker-compose exec intelmq\
+        chown intelmq:intelmq /etc/intelmq/openDXL/*\
     "
   fi
 
