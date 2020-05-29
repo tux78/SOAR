@@ -21,6 +21,21 @@ IntelMQ can collect hash information from MISP, execute a McAfee Active Response
 
 The following routine will create a new folder called SOAR which will hold all required files. 
 
+## Prerequisites
+Installing intelMQ and MISP based on docker requires a proper installation of docker and docker-compose. For the latest installation guide, especially for the installed OS flavour, please review the docker documentation.
+
+Installing docker:
+```
+# sudo apt install docker.io
+# sudo systemctl enable --now docker
+# sudo apt install docker-compose
+```
+
+In addition, the download and subsequent update requires git to be installed:
+```
+# sudo apt install git
+```
+
 ## Clone repository
 Cloning the repository is done by running the following command
 ```
@@ -47,12 +62,18 @@ Integrating intelMQ with ePO actually generates a CSR, which is automatically fo
 ```
 This folder especially holds the client.config file, which has to be addressed when configuring the openDXL bot.
 
-If McAfee ePO integration has been missed during setup, it can be executed at a later stage as well using below command:
+If McAfee ePO integration failed or has been missed during setup, it can be executed at a later stage as well using below command:
 ```
 # docker-compose exec intelmq\
         /usr/local/bin/dxlclient\
         provisionconfig /etc/intelmq/openDXL EPO_IP HOST_IP -t EPO_PORT -u EPO_ADMIN -p EPO_PW
 ```
+In case of failure of ePO DXL integration, the following command may be required to be executed as well:
+```
+# docker-compose exec intelmq\
+        chown intelmq:intelmq /etc/intelmq/openDXL/*
+```
+
 Please replace the following variables with the respective values:
 - EPO_IP: ip address of McAfee ePO server
 - HOST_IP: IP address of docker host
