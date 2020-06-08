@@ -19,6 +19,14 @@
 
 <div id="network-popUp" class="without-bot">
     <span id="network-popUp-title">node</span> <br>
+    <span id="network-popUp-action">
+        <form>
+            <input type="button" class="btn-danger btn-block" value="cancel" id="network-popUp-cancel">
+        </form>
+        <form>
+            <input type="button" class="btn-success btn-block" value="ok" id="network-popUp-ok">
+        </form>
+    </span>
     <table id="network-popUp-fields" class="table table-striped" style="margin:auto;">
         <tr>
             <td>id</td><td><input id="node-id" value="new value"></td>
@@ -39,14 +47,6 @@
             <td>run_mode</td><td><input id="node-run_mode" value=""></td>
         </tr>
     </table>
-    <div>
-        <form>
-            <input type="button" class="btn-danger btn-block" value="cancel" id="network-popUp-cancel">
-        </form>
-        <form>
-            <input type="button" class="btn-success btn-block" value="ok" id="network-popUp-ok">
-        </form>
-    </div>
 </div>
 
 <!-- HTML templates -->
