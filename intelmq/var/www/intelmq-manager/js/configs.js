@@ -422,7 +422,11 @@ function insertKeyValue(key, value, section, allowXButtons, insertAt) {
     keyCell.setAttribute('class', 'node-key');
     keyCell.setAttribute('id', section)
     valueCell.setAttribute('class', 'node-value');
-    valueInput.setAttribute('type', 'text');
+    if (key.endsWith("_password")) {
+        valueInput.setAttribute('type', 'password');
+    } else {
+        valueInput.setAttribute('type', 'text');
+    }
     valueInput.setAttribute('id', key);
 
     if (section == 'generic' && disabledKeys.includes(key) === true) {

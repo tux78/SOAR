@@ -372,6 +372,18 @@ table.dataTable thead .sorting:after {
 #network-popUp-fields td {
   text-align: left;
 }
+#network-popUp-action {
+  position: sticky;
+  width: 100%;
+  height: 40px;
+  padding: 5px;
+  font-size: 28px;
+  display: list-item;
+  top: 0;
+  opacity: 0.9;
+  background-color: lightgrey;
+  font-size: 18px;
+}
 form {
   display: inline-block;
   margin-bottom: 10px;

@@ -14,7 +14,9 @@ RUN echo "Installing pip requirement and dxlclient..." \
   && pip install intelmq \
   && pip install dxlclient \
   && pip install dxltieclient \
+  && pip install dxlepoclient \
   && pip install pymisp \
+  && pip install xmltodict \
   && echo "Finished."
 
 # Finalize intelMQ installation
