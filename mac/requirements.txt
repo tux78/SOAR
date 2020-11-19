@@ -1,0 +1,5 @@
+PyKafka
+requests
+flask
+flask_restful
+dxlclient
