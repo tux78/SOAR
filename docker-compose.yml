@@ -26,5 +26,15 @@ services:
       - "./misp/misp-db:/var/lib/mysql"
     networks:
       - SOAR
+
+  mac:
+    image: mac:PROD
+    volumes:
+      - ./mac/app:/app
+    ports:
+      - "5000:5000"
+    networks:
+      - SOAR
+
 networks:
   SOAR:
