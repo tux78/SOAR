@@ -52,6 +52,7 @@ The actual setup is initiated by executing the setup routine
 The following setup will ask some questions:
 - Install MISP
 - Install intelMQ
+- Install MAC
 - Integrate intelMQ with ePO (requires ePO IP, username and password)
 
 Please note that especially the MISP setup requires some time. Depending on resources this can take up to 1/2 hour!
@@ -98,7 +99,7 @@ The password can be changed by editing the following file:
 ```
 
 ## MISP
-The MIPS webUI is accessible here:
+The MISP webUI is accessible here:
 
 https://[docker IP]/
 
@@ -134,3 +135,13 @@ In order to apply any changes to the running environment, the following command 
 For additional information, please visit the intelMQ development guide:
 
 https://intelmq.readthedocs.io/en/latest/Developers-Guide/
+
+## MAC
+MAC provides a FLASK-driven webUI, which is accessible here:
+
+http://[docker IP]:5000/
+
+The setup integrates the latest modules as available on github, and provides an empty App workspace.
+In case you wish to recover from any previous setup, please backup the config located here:
+
+./mac/app/config.json
