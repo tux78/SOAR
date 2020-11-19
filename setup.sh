@@ -70,6 +70,9 @@ fi
 # MISP
 read -p "Install MISP (y|N): " MISP_INSTALL || MISP_INSTALL = "n"
 
+# MAC
+read -p "Install MAC (y|N): " MAC_INSTALL || MAC_INSTALL = "n"
+
 #########################
 # intelMQ Installation
 #########################
@@ -77,44 +80,44 @@ read -p "Install MISP (y|N): " MISP_INSTALL || MISP_INSTALL = "n"
 if [ "${INTELMQ_INSTALL,,}" == "y" ]
 then
   # create folders
-  execute_command "Create intelMQ dev directory" "mkdir dev_intelmq"
+  execute_command "intelMQ: Create dev directory" "mkdir dev_intelmq"
 
   # clone intelmq dev
-  execute_command "Clone intelMQ DEV" "git clone https://github.com/tux78/intelmq.git ./dev_intelmq"
+  execute_command "intelMQ: Clone intelMQ DEV" "git clone https://github.com/tux78/intelmq.git ./dev_intelmq"
 
   # Build intelMQ image
-  execute_command "Build intelMQ image" "\
+  execute_command "intelMQ: Build intelMQ image" "\
     docker build \
       -t intelmq:PROD \
       -f ./intelmq/Dockerfile.intelmq .\
   "
 
   # create intelMQ container
-  execute_command "Create intelMQ Container" "\
+  execute_command "intelMQ: Create intelMQ Container" "\
     docker-compose up --no-start --force-recreate intelmq\
   "
 
   # start intelMQ container
-  execute_command "Start intelMQ" "\
+  execute_command "intelMQ: Start intelMQ" "\
     docker-compose start intelmq\
   "
 
   # Integrate intelMQ with ePO
   if [ "${EPO_CONFIG,,}" == "y" ]
   then
-    execute_command "Integrate intelMQ with ePO: provision DXL certificate" "\
+    execute_command "ePO: Integrate intelMQ with ePO: provision DXL certificate" "\
       docker-compose exec intelmq\
         /usr/local/bin/dxlclient\
         provisionconfig /etc/intelmq/openDXL $EPO_IP $HOST_IP -t $EPO_PORT -u $EPO_ADMIN -p $EPO_PW\
     "
-    execute_command "Integrate intelMQ with ePO: change file permissions" "\
+    execute_command "ePO: Integrate intelMQ with ePO: change file permissions" "\
       docker-compose exec intelmq\
         chown intelmq:intelmq /etc/intelmq/openDXL/*\
     "
   fi
 
   # Incorporate DEV environment
-  execute_command "Incorporate intelMQ DEV environment" "\
+  execute_command "intelMQ: Incorporate intelMQ DEV environment" "\
     docker-compose exec intelmq /update_dev.sh \
   "
 
@@ -128,10 +131,10 @@ if [ "${MISP_INSTALL,,}" == "y" ]
 then
 
   # create folders
-  execute_command "Create MISP directories" "mkdir misp/misp-db"
+  execute_command "MISP: Create MISP directories" "mkdir misp/misp-db"
 
   # Build MISP image
-  execute_command "Build MISP image (may take a long time)" "\
+  execute_command "MISP: Build MISP image (may take a long time)" "\
     docker build \
       --build-arg MISP_FQDN=$HOST_IP \
       -t misp:PROD \
@@ -139,18 +142,51 @@ then
   "
 
   # create MISP container
-  execute_command "Create MISP Container" "\
+  execute_command "MISP: Create MISP Container" "\
     docker-compose up --no-start --force-recreate misp\
   "
 
   # start MISP container
-  execute_command "Start MISP" "\
+  execute_command "MISP: Start MISP" "\
     docker-compose start misp\
   "
 
   # Init MISP DB
-  execute_command "Init MISP DB" "\
+  execute_command "MISP: Init MISP DB" "\
     docker-compose exec misp /init-db\
+  "
+fi
+
+#########################
+# MAC Installation
+#########################
+
+if [ "${MAC_INSTALL,,}" == "y" ]
+then
+  # create folders
+  execute_command "MAC: Create necessary directory" "mkdir mac/app"
+
+  # clone MAC
+  execute_command "MAC: Clone from github" "git clone https://github.com/tux78/MAC.git ./mac/app"
+
+  # create empty config for MAC
+  execute_command "MAC: create empty config file" "echo {} > mac/app/conofig.json"
+
+  # Build MAC image
+  execute_command "MAC: Build image" "\
+    docker build \
+      -t mac:PROD \
+      -f ./mac/Dockerfile.mac .\
+  "
+
+  # create MAC container
+  execute_command "MAC: Create Container" "\
+    docker-compose up --no-start --force-recreate mac\
+  "
+
+  # start MAC container
+  execute_command "MAC: Start Container" "\
+    docker-compose start mac\
   "
 fi
 
