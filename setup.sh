@@ -170,7 +170,7 @@ then
   execute_command "MAC: Clone from github" "git clone https://github.com/tux78/MAC.git ./mac/app"
 
   # create empty config for MAC
-  execute_command "MAC: create empty config file" "echo {} > mac/app/conofig.json"
+  execute_command "MAC: create empty config file" "echo {} > mac/app/config.json"
 
   # Build MAC image
   execute_command "MAC: Build image" "\
