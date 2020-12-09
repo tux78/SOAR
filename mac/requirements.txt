@@ -3,3 +3,8 @@ requests
 flask
 flask_restful
 dxlclient
+dxltieclient
+dxlepoclient
+msiempy
+pymisp
+pyyaml
