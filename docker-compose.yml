@@ -3,7 +3,6 @@ services:
 
   intelmq:
     image: intelmq:PROD
-### Map external volume for data persistance
     volumes:
        # OPTIONAL: when developing intelMQ, map local GIT repo
        # see the following link for details:
@@ -17,7 +16,6 @@ services:
       - SOAR
 
   misp:
-#    image: harvarditsecurity/misp
     image: misp:PROD
     ports:
       - "443:443"
